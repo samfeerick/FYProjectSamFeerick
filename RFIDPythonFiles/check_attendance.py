@@ -8,7 +8,7 @@ import Adafruit_CharLCD as LCD
 db = mysql.connector.connect(
   host="localhost",
   user="attendanceadmin",
-  passwd="pimylifeup",
+  passwd="sam",
   database="attendancesystem"
 )
 
