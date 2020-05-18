@@ -44,10 +44,10 @@ try:
         print('Template already exists at position #' + str(positionNumber))   #person already registered on the database
         exit(0)
 
-    print('Remove finger...')
-    time.sleep(2)
+    print('Remove finger...')    #remove finger
+    time.sleep(2)  #pause the script for 2 seconds
 
-    print('Waiting for same finger again...')
+    print('Waiting for same finger again...')  #place the same finger on the sensor
 
     ## Wait that finger is read again
     while ( f.readImage() == False ):
@@ -61,11 +61,11 @@ try:
         raise Exception('Fingers do not match')
 
     ## Creates a template
-    f.createTemplate()
+    f.createTemplate()  
 
     ## Saves template at new position number
     positionNumber = f.storeTemplate()
-    print('Finger enrolled successfully!')
+    print('Finger enrolled successfully!')       #persons fingerprint successfully stored on database with date and time
     now = datetime.now()
     formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
     cursor.execute('insert into record_table(Name, TimeStamp) values(%s, %s)', (var, formatted_date))
