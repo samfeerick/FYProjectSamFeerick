@@ -1,21 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-PyFingerprint
-Copyright (C) 2015 Bastian Raschke <bastian.raschke@posteo.de>
-All rights reserved.
-
-"""
-
-import time
+import time  #import the real time
 from pyfingerprint.pyfingerprint import PyFingerprint
-import mysql.connector as mariadb
+import mysql.connector as mariadb  #connect the mysql database
 from datetime import datetime
 
 
-## Enrolls new finger
-##
 
 ## Tries to initialize the sensor
 try:
@@ -24,23 +15,22 @@ try:
     cursor = mariadb_connection.cursor()
 
     if ( f.verifyPassword() == False ):
-        raise ValueError('The given fingerprint sensor password is wrong!')
+        raise ValueError('The given fingerprint sensor password is wrong!')   #wrong password entered
 
 except Exception as e:
-    print('The fingerprint sensor could not be initialized!')
+    print('The fingerprint sensor could not be initialized!')  #error message
     print('Exception message: ' + str(e))
     exit(1)
 
 ## Gets some sensor information
-print('Currently used templates: ' + str(f.getTemplateCount()) +'/'+ str(f.getStorageCapacity()))
+print('Currently used templates: ' + str(f.getTemplateCount()) +'/'+ str(f.getStorageCapacity())) #how many templates are used
 
-## Tries to enroll new finger
 try:
-    var = raw_input("Please enter your name...")
-    print('Waiting for finger...')
+    var = raw_input("Please enter your name:")      #enter employees name
+    print('Waiting for finger...')           
 
-    ## Wait that finger is read
-    while ( f.readImage() == False ):
+    
+    while ( f.readImage() == False ):        #place finger on sensor
         pass
 
     ## Converts read image to characteristics and stores it in charbuffer 1
@@ -51,7 +41,7 @@ try:
     positionNumber = result[0]
 
     if ( positionNumber >= 0 ):
-        print('Template already exists at position #' + str(positionNumber))
+        print('Template already exists at position #' + str(positionNumber))   #person already registered on the database
         exit(0)
 
     print('Remove finger...')
