@@ -1,21 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-PyFingerprint
-Copyright (C) 2015 Bastian Raschke <bastian.raschke@posteo.de>
-All rights reserved.
-
-"""
-
-from pyfingerprint.pyfingerprint import PyFingerprint
 
 
-## Deletes a finger from sensor
-##
+from pyfingerprint.pyfingerprint import PyFingerprint  #importing fingerprint 
 
 
-## Tries to initialize the sensor
 try:
     f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
 
@@ -23,7 +13,7 @@ try:
         raise ValueError('The given fingerprint sensor password is wrong!')
 
 except Exception as e:
-    print('The fingerprint sensor could not be initialized!')
+    print('The fingerprint sensor could not be initialized!') #fingerprint sensor could not be initialized message
     print('Exception message: ' + str(e))
     exit(1)
 
