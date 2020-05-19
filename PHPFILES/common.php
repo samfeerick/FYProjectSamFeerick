@@ -1,8 +1,6 @@
 <?php
 //Include medoo which is being utilized for interacting with the database
 require 'Medoo.php';
-
-//Now use Medoo's namespace
 use Medoo\Medoo;
 
 //Finally make a connection to our database and store it in our $database variable.
